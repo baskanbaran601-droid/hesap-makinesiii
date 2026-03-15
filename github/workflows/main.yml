@@ -1,0 +1,18 @@
+name: APK Yapici
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Buildozer ile APK Bas
+        uses: ArtemSerebriakov/buildozer-action@v1
+        with:
+          buildozer_version: master
+          command: android debug
+      - name: APK Yukle
+        uses: actions/upload-artifact@v2
+        with:
+          name: hesap-makinesi-apk
+          path: bin/*.apk
+          
